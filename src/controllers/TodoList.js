@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Todo from '../components/Todo'
 import {deleteTodo, changeEditMode, changeState, updateTodo} from '../actions/todo-actions'
@@ -37,6 +38,19 @@ class TodoList extends Component {
       </>
     )
   }
+}
+
+TodoList.propTypes = {
+  todos: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    completed: PropTypes.bool.isRequired,
+    text: PropTypes.string.isRequired,
+    editMode: PropTypes.bool.isRequired
+  }).isRequired).isRequired,
+  deleteTodo: PropTypes.func.isRequired,
+  changeState: PropTypes.func.isRequired,
+  changeEditMode: PropTypes.func.isRequired,
+  updateTodo: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => ({
